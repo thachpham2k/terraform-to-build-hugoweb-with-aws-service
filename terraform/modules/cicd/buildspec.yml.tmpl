@@ -1,0 +1,22 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - apt-get update
+      - echo Installing hugo
+      - curl -L -o hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.111.3/hugo_0.111.3_linux-amd64.deb
+      - dpkg -i hugo.deb
+      - hugo version
+  build:
+    commands:
+      # Build
+      - hugo -v
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'public'
+#  post_build:
+#    commands:
+#      # Post Build
+#      - aws s3 cp public s3://$S3_BUCKET --recursive --exclude 'index.html'
+#      - aws s3 cp public/index.html s3://$S3_BUCKET

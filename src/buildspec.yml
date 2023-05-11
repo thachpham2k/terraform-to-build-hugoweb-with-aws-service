@@ -1,0 +1,16 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - apt-get update -y
+      - echo Installing hugo
+      - curl -L -o hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.111.3/hugo_0.111.3_linux-amd64.deb
+      - dpkg -i hugo.deb
+      - hugo version
+  build:
+    commands:
+      - hugo -v
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'public'
